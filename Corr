@@ -1,16 +1,15 @@
-corr <- function(directory, threshold = 0) {
-    source("complete.R")
-    completeCases <- complete(directory)
-    casesAboveThreshold <- completeCases[completeCases$value > threshold,1]
-    allFiles <- list.files(path = directory, full.names = TRUE)
-    
-    correlations <- rep(NA,length(casesAboveThreshold))
-    for (i in casesAboveThreshold) {
-        fileData <- (read.csv(allFiles[i]))
-        completeCases <- complete.cases(fileData)
-        validSulfateData <- fileData[completeCases, 2]
-        validNitrateData <- fileData[completeCases, 3]
-        correlations[i] <- cor(x = validSulfateData, y = validNitrateData)
+corr <- function(directory, threshold = 0){
+    file<- list.files(path = directory, pattern = ".csv", full.names = TRUE)
+    value<- numeric()
+    for(i in id) {
+    data <- read.csv(file[i])
+    complete <- nrow(data)
+    if(complete <= threshold){
+        next
     }
-    correlations <- correlations[complete.cases(correlations)]
+    sulfate <- data[["sulfate"]]
+    nitrate <- data[["nitrate"]]
+    value <- c(value, cor(sulfate,nitrate))
+    }
+value
 }
