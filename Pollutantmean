@@ -1,0 +1,10 @@
+pollutantmean <- function(directory, pollutant, id = 1:332){
+    file<- list.files(path = directory, pattern = ".csv", full.names = TRUE)
+    value<- numeric()
+    
+    for (i in id){
+    data <- read.csv(file[i])
+    value <- c(value, data[[pollutant]])
+    }
+    mean(value,na.rm = TRUE)
+}
