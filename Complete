@@ -1,0 +1,11 @@
+complete <- function(directory, id = 1: 332){
+    file<-list.files(path = directory, pattern = ".csv", full.names = TRUE)
+    value<- numeric()
+    
+    for(i in id) {
+        data <- read.csv(file[i])
+        c<- sum(complete.cases(data))
+        value<-c(value,c)
+    }
+    data.frame(id,value)
+}
